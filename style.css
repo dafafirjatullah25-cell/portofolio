@@ -740,6 +740,18 @@ section {
    ============================================ */
 
 @media (max-width: 768px) {
+    .navbar {
+        padding: 0.5rem 0;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    .hero {
+        margin-top: 60px;
+    }
+
     .hero-content h1 {
         font-size: 2.5rem;
     }
@@ -792,9 +804,22 @@ section {
 }
 
 @media (max-width: 480px) {
+    .navbar {
+        padding: 0.4rem 0;
+    }
+
+    .logo {
+        font-size: 1rem;
+    }
+
+    .hero {
+        margin-top: 50px;
+    }
+
     .nav-links {
         flex-direction: column;
         gap: 0.5rem;
+        font-size: 0.75rem;
     }
 
     .hero-content h1 {

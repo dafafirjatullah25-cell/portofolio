@@ -805,21 +805,26 @@ section {
 
 @media (max-width: 480px) {
     .navbar {
-        padding: 0.4rem 0;
+        padding: 0.3rem 0;
     }
 
     .logo {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
 
     .hero {
-        margin-top: 50px;
+        margin-top: 45px;
     }
 
     .nav-links {
-        flex-direction: column;
-        gap: 0.5rem;
-        font-size: 0.75rem;
+        flex-direction: row;
+        gap: 0.4rem;
+        font-size: 0.65rem;
+    }
+
+    .nav-link {
+        font-size: 0.65rem;
+        padding: 0 0.25rem;
     }
 
     .hero-content h1 {

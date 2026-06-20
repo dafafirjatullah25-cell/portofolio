@@ -98,10 +98,11 @@ const cardObserver = new IntersectionObserver(function(entries) {
     });
 }, cardObserverOptions);
 
-cards.forEach(card => {
+cards.forEach((card, index) => {
     card.style.opacity = '0';
     card.style.transform = 'translateY(30px)';
     card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    card.style.transitionDelay = `${index * 100}ms`;
     cardObserver.observe(card);
 });
 
@@ -113,9 +114,36 @@ window.addEventListener('scroll', function() {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 50) {
         navbar.style.borderBottomColor = 'rgba(42, 48, 82, 0.5)';
+        navbar.style.boxShadow = '0 5px 20px rgba(0, 212, 255, 0.1)';
     } else {
         navbar.style.borderBottomColor = 'rgba(42, 48, 82, 1)';
+        navbar.style.boxShadow = 'none';
     }
 });
+
+/* ============================================
+   BUTTON HOVER RIPPLE EFFECT
+   ============================================ */
+
+document.querySelectorAll('.btn').forEach(button => {
+    button.addEventListener('mouseenter', function() {
+        this.style.transition = 'all 0.3s ease';
+    });
+});
+
+/* ============================================
+   LOGO ANIMATION
+   ============================================ */
+
+const logo = document.querySelector('.logo');
+if (logo) {
+    logo.style.transition = 'all 0.3s ease';
+    logo.addEventListener('mouseenter', function() {
+        this.style.transform = 'scale(1.1) rotate(5deg)';
+    });
+    logo.addEventListener('mouseleave', function() {
+        this.style.transform = 'scale(1) rotate(0deg)';
+    });
+}
 
 console.log('Portfolio script loaded successfully!');

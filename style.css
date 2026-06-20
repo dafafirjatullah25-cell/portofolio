@@ -81,19 +81,20 @@ body {
     position: relative;
 }
 
-.nav-link:hover,
-.nav-link.active {
-    color: var(--primary-color);
-}
-
-.nav-link.active::after {
+.nav-link::before {
     content: '';
     position: absolute;
     bottom: -5px;
     left: 0;
-    width: 100%;
+    width: 0;
     height: 2px;
     background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::before,
+.nav-link.active::before {
+    width: 100%;
 }
 
 /* ============================================
@@ -128,6 +129,59 @@ body {
     50% { transform: translate(20px, -40%); }
 }
 
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
+    }
+}
+
+
+
 .hero-content {
     position: relative;
     z-index: 1;
@@ -138,6 +192,7 @@ body {
     font-size: 3.5rem;
     margin-bottom: 1rem;
     line-height: 1.2;
+    animation: slideInDown 0.8s ease-out;
 }
 
 .highlight {
@@ -148,6 +203,7 @@ body {
     font-size: 1.5rem;
     color: var(--primary-color);
     margin-bottom: 1.5rem;
+    animation: slideInUp 0.8s ease-out 0.2s both;
     font-weight: 500;
 }
 
@@ -155,6 +211,7 @@ body {
     font-size: 1.1rem;
     color: var(--text-secondary);
     max-width: 700px;
+    animation: slideInUp 0.8s ease-out 0.4s both;
     margin: 0 auto 2rem;
     line-height: 1.8;
 }
@@ -162,6 +219,7 @@ body {
 .cta-buttons {
     display: flex;
     gap: 1rem;
+    animation: slideInUp 0.8s ease-out 0.6s both;
     justify-content: center;
     flex-wrap: wrap;
 }
@@ -182,7 +240,7 @@ body {
     color: var(--darker-bg);
     box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
 }
-
+ scale(1.05)
 .btn-primary:hover {
     transform: translateY(-3px);
     box-shadow: 0 5px 30px rgba(0, 212, 255, 0.5);
@@ -195,7 +253,7 @@ body {
 }
 
 .btn-secondary:hover {
-    background-color: rgba(0, 212, 255, 0.1);
+    background-color: rgba(0, 2 scale(1.05)12, 255, 0.1);
     transform: translateY(-3px);
 }
 
@@ -211,6 +269,7 @@ section {
     font-size: 2.5rem;
     margin-bottom: 3rem;
     text-align: center;
+    animation: slideInDown 0.8s ease-out;
     position: relative;
 }
 
@@ -234,8 +293,33 @@ section {
 }
 
 .about-content {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.about-photo {
+    text-align: center;
+    animation: fadeInScale 0.8s ease-out;
+}
+
+.about-photo img {
+    max-width: 100%;
+    width: 300px;
+    height: 300px;
+    border-radius: 15px;
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+    transition: all 0.3s ease;
+    object-fit: cover;
+}
+
+.about-photo img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 50px rgba(0, 212, 255, 0.5);
 }
 
 .about-text p {
@@ -291,14 +375,26 @@ section {
     height: 100%;
 }
 
-.skill-card:hover {
-    transform: translateY(-10px);
+.skill-card:hover { scale(1.02);
     border-color: var(--primary-color);
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+    animation: glow 2s ease-in-out
     box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
 }
 
 .skill-icon {
     font-size: 3rem;
+    transition: transform 0.3s ease;
+}
+
+.skill-card:hover .skill-icon {
+    transform: rotateY(360deg) scale(1.1);
+    animation: spin 0.6s ease-in-out;
+}
+
+@keyframes spin {
+    0% { transform: rotateY(0deg); }
+    100% { transform: rotateY(360deg) scale(1.1); }
     color: var(--primary-color);
     margin-bottom: 1rem;
 }
@@ -392,9 +488,10 @@ section {
     display: flex;
     flex-direction: column;
 }
-
-.project-card:hover {
-    transform: translateY(-10px);
+ scale(1.02);
+    border-color: var(--primary-color);
+    box-shadow: 0 15px 40px rgba(0, 212, 255, 0.2);
+    animation: glow 2s ease-in-out
     border-color: var(--primary-color);
     box-shadow: 0 15px 40px rgba(0, 212, 255, 0.2);
 }
@@ -424,7 +521,7 @@ section {
 }
 
 .project-link {
-    display: inline-block;
+    display: inline-block; scale(1.05)
     margin-top: 1rem;
     padding: 0.5rem 1rem;
     background-color: rgba(0, 212, 255, 0.15);
@@ -681,6 +778,16 @@ section {
     .btn {
         width: 100%;
         max-width: 300px;
+    }
+
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .about-photo img {
+        width: 250px;
+        height: 250px;
     }
 }
 

@@ -1,8 +1,0 @@
-{
-  "buildCommand": "echo 'Portfolio project'",
-  "outputDirectory": ".",
-  "public": true,
-  "includeFiles": [
-    "PROYEK/**"
-  ]
-}
